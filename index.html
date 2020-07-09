@@ -95,10 +95,13 @@
     const $nuevoCuadro = obtenerCuadroAleatorio();
     secuenciaMaquina.push($nuevoCuadro);
 
+    // primera funcion importante del programa.
+
     const RETRASO_TURNO_JUGADOR = (secuenciaMaquina.length + 1) * 1000;
 
     secuenciaMaquina.forEach(function($cuadro, index) {
       const RETRASO_MS = (index + 1) * 1000;
+      console.log(RETRASO_MS);
       setTimeout(function() {
         resaltar($cuadro);
       }, RETRASO_MS);
@@ -113,6 +116,9 @@
     ronda++;
     actualizarNumeroRonda(ronda);
   }
+
+
+  // segunda funcion principal del programa
 
   function manejarInputUsuario(e) {
     const $cuadro = e.target;
@@ -163,6 +169,7 @@
   function bloquearInputUsuario() {
     document.querySelectorAll('.cuadro').forEach(function($cuadro) {
       $cuadro.onclick = function() {
+        console.log("bloquear input usuario");
       };
     });
   }
@@ -175,6 +182,7 @@
 
   function perder() {
     bloquearInputUsuario();
+    reiniciarEstado();
     actualizarEstado('Perdiste! Tocá "Empezar" para jugar de nuevo!', true);
   }
 
